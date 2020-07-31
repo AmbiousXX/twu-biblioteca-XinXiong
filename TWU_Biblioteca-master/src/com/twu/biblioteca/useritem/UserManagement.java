@@ -1,6 +1,11 @@
 package com.twu.biblioteca.useritem;
 
+import com.twu.biblioteca.bookitem.Book;
+
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class UserManagement {
 //    //injection
@@ -38,12 +43,30 @@ public class UserManagement {
         myState.setIsUser(false);
     }
 
-    public void userRegisterCheckoutBook() {
-
+    public void userRegisterCheckoutBook(MyState myState, List<Book> books, int checkoutBookNumber) {
+        Book checkoutBook = books.get(checkoutBookNumber - 1);
+        myState.getUserAccount().addNewElementToCheckoutBookList(checkoutBook, checkoutBookNumber);
     }
 
-    public void userRegisterReturnBook() {
+    public void userRegisterReturnBook(MyState myState, int returnBookNumber) {
+        myState.getUserAccount().removeReturnBookFromCheckoutBookList(returnBookNumber);
+    }
 
+    // 未来打印book信息的部分应可以与BookManagement内相同部分复用（？）
+    public void viewCheckoutBookList(MyState myState) {
+        Hashtable<Integer, Book> checkoutBookList = myState.getUserAccount().getUserCheckoutBookList();
+        if(checkoutBookList.isEmpty()) {
+            // 异常信息
+        }
+
+        Iterator iter = checkoutBookList.entrySet().iterator();
+        while(iter.hasNext()) {
+            Map.Entry entry = (Map.Entry)iter.next();
+            Integer bookNumber = (Integer)entry.getKey();
+            Book book = (Book)entry.getValue();
+            System.out.println(bookNumber.intValue() + " | " + book.getName() + " | "
+                    + book.getAuthor() + " | " + book.getPublicationYear());
+        }
     }
 
     public void viewMyInformation(){

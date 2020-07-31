@@ -23,7 +23,7 @@ public class MyState {
         return null;
     }
 
-    public boolean judgeIsUserOrNot() {
+    public boolean getIsUser() {
         return isUser;
     }
 }
