@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.bookitem.*;
+import com.twu.biblioteca.movieitem.Movie;
+import com.twu.biblioteca.movieitem.MovieManagement;
 import com.twu.biblioteca.useritem.MyState;
 import com.twu.biblioteca.useritem.User;
 import com.twu.biblioteca.useritem.UserManagement;
@@ -16,10 +18,15 @@ public class BibliotecaApp {
     }
 
     MessageInformation messageInformation = new MessageInformation();
+    MyState myState = new MyState();
     BookManagement bookManagement = new BookManagement(messageInformation);
+    MovieManagement movieManagement = new MovieManagement();
+    UserManagement userManagement = new UserManagement();
     Option option = new Option();
 
     List<Book> books = bookManagement.initializeBookList();
+    List<Movie> movies = movieManagement.initializeMovieList();
+    Hashtable<String, User> users = userManagement.initializeUserList();
 
     public void manualDealWithOptionMenu() {
         messageInformation.showWelcomeMessage();
@@ -28,7 +35,7 @@ public class BibliotecaApp {
 
         Scanner scanner = new Scanner(System.in);
 
-        option.dealWithInputOption(scanner, books);
+        option.dealWithInputOption(scanner, myState, books, movies, users);
     }
 
     public static void main(String[] args) {
