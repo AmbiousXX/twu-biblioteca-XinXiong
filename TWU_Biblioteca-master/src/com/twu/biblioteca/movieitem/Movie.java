@@ -4,7 +4,7 @@ public class Movie {
     private String name;
     private String director;
     private int year;
-    private int rating;
+    private int rating;      /* 0 for unrated */
     private boolean isChecked;
 
     public Movie(String name, int year, String director, int rating) {
@@ -26,7 +26,6 @@ public class Movie {
         return director;
     }
 
-    // 0 for unrated
     public int getRating() {
         return rating;
     }

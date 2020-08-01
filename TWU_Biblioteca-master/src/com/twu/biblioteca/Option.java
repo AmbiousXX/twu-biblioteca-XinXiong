@@ -37,18 +37,17 @@ public class Option {
         }
     }
 
-    public void dealWithInputOptionBeforLogIn(Scanner scanner, MyState myState, List<Book> books,
-                                    List<Movie> movies, Hashtable<String, User> users) {
-        MessageInformation messageInformation = new MessageInformation();
-        BookManagement bookManagement = new BookManagement(messageInformation);
-        MovieManagement movieManagement = new MovieManagement();
-        UserManagement userManagement = new UserManagement();
+    public void dealWithInputOptionBeforeLogIn(Scanner scanner, MyState myState, BookManagement bookManagement,
+                                    MovieManagement movieManagement, UserManagement userManagement) {
+        MessageInformation messageInformation = MessageInformation.getMessageInformation();
+        List<Book> books = bookManagement.initializeBookList();
+        List<Movie> movies = movieManagement.initializeMovieList();
+        Hashtable<String, User> users = userManagement.initializeUserList();
 
         do {
             // get an input from console
             String inputOption = scanner.nextLine();
-
-            // TODO:很多时候需要判断一下是否登录了
+            
             switch (inputOption) {
                 case "list of books":
                     bookManagement.viewBookList(books);
@@ -57,22 +56,20 @@ public class Option {
                     movieManagement.viewMovieList(movies);
                     break;
                 case "check out movie":
+                    MessageInformation.getMessageInformation().showHintBeforeChooseElement();
                     String checkoutMovieNumberStr = scanner.nextLine();
                     movieManagement.checkoutMovie(movies, Integer.parseInt(checkoutMovieNumberStr));
                     break;
                 case "log in":
+                    MessageInformation.getMessageInformation().showHintBeforeInputAccountNumberAndPassword();
                     String inputAccountNumberAndPassword = scanner.nextLine();
                     // split input account number and password by a space
                     String[] inputAccountInfo = inputAccountNumberAndPassword.split(" ");
                     userManagement.logIn(users, myState,inputAccountInfo[0], inputAccountInfo[1]);
                     if(myState.getIsUser()) {
                         initializeAndViewOptionMenuAfterLogIn();
-                        // TODO:传入的参数可以优化吗？？
-                        dealWithInputOptionAfterLogIn(scanner, myState, books, messageInformation,
-                                bookManagement, userManagement);
-                    } else {
-                        // 提示登录失败，请重试（？）
-                        System.out.println("Sorry. Please try again.");
+                        MessageInformation.getMessageInformation().showHintBeforeChooseOption();
+                        dealWithInputOptionAfterLogIn(scanner, myState, books, bookManagement, userManagement);
                     }
                     break;
                 case "quit":
@@ -85,7 +82,7 @@ public class Option {
         } while (!isQuit);
     }
 
-    private void dealWithInputOptionAfterLogIn(Scanner scanner, MyState myState, List<Book> books, MessageInformation messageInformation,
+    private void dealWithInputOptionAfterLogIn(Scanner scanner, MyState myState, List<Book> books,
                                                BookManagement bookManagement, UserManagement userManagement){
         boolean hasLoggedOut= false;
 
@@ -98,11 +95,13 @@ public class Option {
                     bookManagement.viewBookList(books);
                     break;
                 case "check out book":
+                    MessageInformation.getMessageInformation().showHintBeforeChooseElement();
                     String checkoutBookNumberStr = scanner.nextLine();
                     bookManagement.checkoutBook(books, Integer.parseInt(checkoutBookNumberStr));
                     userManagement.userRegisterCheckoutBook(myState, books, Integer.parseInt(checkoutBookNumberStr));
                     break;
                 case "return book":
+                    MessageInformation.getMessageInformation().showHintBeforeChooseElement();
                     String returnBookNumberStr = scanner.nextLine();
                     userManagement.userRegisterReturnBook(myState, Integer.parseInt(returnBookNumberStr));
                     bookManagement.returnBook(books, Integer.parseInt(returnBookNumberStr));
@@ -117,9 +116,10 @@ public class Option {
                     userManagement.logOut(myState);
                     hasLoggedOut = true;
                     initializeAndViewOptionMenuBeforeLogIn();
+                    MessageInformation.getMessageInformation().showHintBeforeChooseOption();
                     break;
                 default:
-                    messageInformation.showInvalidOptionNotice();
+                    MessageInformation.getMessageInformation().showInvalidOptionNotice();
                     break;
             }
         } while(!hasLoggedOut);

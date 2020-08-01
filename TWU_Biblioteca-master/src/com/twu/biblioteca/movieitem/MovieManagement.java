@@ -1,12 +1,20 @@
 package com.twu.biblioteca.movieitem;
 
-import com.twu.biblioteca.bookitem.Book;
+import com.twu.biblioteca.MessageInformation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MovieManagement {
+    private MovieManagement() {}
+
+    private static MovieManagement movieManagement = new MovieManagement();
+
+    public static MovieManagement getMovieManagement() {
+        return movieManagement;
+    }
+
     public List<Movie> initializeMovieList() {
         // make a new movie list
         List<Movie> movies = new ArrayList<>(Arrays.asList(
@@ -34,6 +42,7 @@ public class MovieManagement {
     public void checkoutMovie(List<Movie> movies, int movieNumber) {
         if (movieNumber <= movies.size() && !movies.get(movieNumber - 1).getIsChecked()) {
             movies.get(movieNumber - 1).setIsChecked(true);
+            MessageInformation.getMessageInformation().showCheckoutMovieSuccessfully();
         }
     }
 }

@@ -1,55 +1,51 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.bookitem.*;
-import com.twu.biblioteca.movieitem.Movie;
-import com.twu.biblioteca.movieitem.MovieManagement;
-import com.twu.biblioteca.useritem.MyState;
-import com.twu.biblioteca.useritem.User;
-import com.twu.biblioteca.useritem.UserManagement;
+import com.twu.biblioteca.movieitem.*;
+import com.twu.biblioteca.useritem.*;
 
-import java.util.Hashtable;
-import java.util.List;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    // TODO
-    public void systemInitialization() {
-        // 几个板块的初始化
+    MessageInformation messageInformation;
+    BookManagement bookManagement;
+    MovieManagement movieManagement;
+    UserManagement userManagement;
+    Option option;
+    MyState myState;
+
+    public BibliotecaApp(MessageInformation messageInformation, BookManagement bookManagement,
+                         MovieManagement movieManagement, UserManagement userManagement,
+                         Option option, MyState myState) {
+        this.messageInformation = messageInformation;
+        this.bookManagement = bookManagement;
+        this.movieManagement = movieManagement;
+        this.userManagement = userManagement;
+        this.option = option;
+        this.myState = myState;
     }
-
-    MessageInformation messageInformation = new MessageInformation();
-    MyState myState = new MyState();
-    BookManagement bookManagement = new BookManagement(messageInformation);
-    MovieManagement movieManagement = new MovieManagement();
-    UserManagement userManagement = new UserManagement();
-    Option option = new Option();
-
-    List<Book> books = bookManagement.initializeBookList();
-    List<Movie> movies = movieManagement.initializeMovieList();
-    Hashtable<String, User> users = userManagement.initializeUserList();
 
     public void manualDealWithOptionMenu() {
         messageInformation.showWelcomeMessage();
 
         option.initializeAndViewOptionMenuBeforeLogIn();
+        MessageInformation.getMessageInformation().showHintBeforeChooseOption();
 
         Scanner scanner = new Scanner(System.in);
 
-        option.dealWithInputOptionBeforLogIn(scanner, myState, books, movies, users);
+        option.dealWithInputOptionBeforeLogIn(scanner, myState, bookManagement, movieManagement, userManagement);
     }
 
     public static void main(String[] args) {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+        MessageInformation messageInformation = MessageInformation.getMessageInformation();
+        BookManagement bookManagement = BookManagement.getBookManagement();
+        MovieManagement movieManagement = MovieManagement.getMovieManagement();
+        UserManagement userManagement = UserManagement.getUserManagement();
+        Option option = new Option();
+        MyState myState = new MyState();
+
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(messageInformation, bookManagement,
+                movieManagement, userManagement, option, myState);
         bibliotecaApp.manualDealWithOptionMenu();
-//        UserManagement userManagement = new UserManagement();
-//        MyState myState = new MyState();
-//        Hashtable<String, User> users = userManagement.initializeUserList();
-//        Scanner scanner = new Scanner(System.in);
-//        String inputOption = scanner.nextLine();
-//        // userManagement.logIn(users, "lxm-0376", "!ad7dl23");
-//        userManagement.logIn(users, myState,"lxm-0376", inputOption);
-//        System.out.println(myState.getUserAccount().getAccountNumber());
-//        userManagement.logOut(myState);
-//        System.out.println(myState.getUserAccount().getAccountNumber());
     }
 }

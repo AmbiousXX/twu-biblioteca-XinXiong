@@ -10,8 +10,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class MessageInformationTest {
-    MessageInformation messageInformation = new MessageInformation();
-    BookManagement bookManagement = new BookManagement(messageInformation);
+    MessageInformation messageInformation = MessageInformation.getMessageInformation();
+    BookManagement bookManagement = BookManagement.getBookManagement();
 
     List<Book> books = bookManagement.initializeBookList();
 

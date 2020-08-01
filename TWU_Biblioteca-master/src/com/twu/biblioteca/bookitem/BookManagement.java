@@ -7,11 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BookManagement {
-    // injection
-    private MessageInformation messageInformation;
 
-    public BookManagement(MessageInformation messageInformation) {
-        this.messageInformation = messageInformation;
+    private BookManagement() {}
+
+    private static BookManagement bookManagement = new BookManagement();
+
+    public static BookManagement getBookManagement() {
+        return bookManagement;
     }
 
     public List<Book> initializeBookList() {
@@ -41,18 +43,17 @@ public class BookManagement {
     public void checkoutBook(List<Book> books, int bookNumber) {
         if (bookNumber <= books.size() && !books.get(bookNumber - 1).getIsChecked()) {
             books.get(bookNumber - 1).setIsChecked(true);
-            messageInformation.showCheckoutBookSuccessfully();
         } else if (books.get(bookNumber - 1).getIsChecked()) {
-            messageInformation.showCheckoutBookUnsuccessfully();
+            MessageInformation.getMessageInformation().showCheckoutBookUnsuccessfully();
         }
     }
 
     public void returnBook(List<Book> books, int bookNumber) {
         if (bookNumber <= books.size() && books.get(bookNumber - 1).getIsChecked()) {
             books.get(bookNumber - 1).setIsChecked(false);
-            messageInformation.showReturnBookSuccessfully();
+            MessageInformation.getMessageInformation().showReturnBookSuccessfully();
         } else if (!books.get(bookNumber - 1).getIsChecked()) {
-            messageInformation.showReturnBookUnsuccessfully();
+            MessageInformation.getMessageInformation().showReturnBookUnsuccessfully();
         }
     }
 }
