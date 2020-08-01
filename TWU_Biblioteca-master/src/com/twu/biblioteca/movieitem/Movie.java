@@ -1,21 +1,18 @@
 package com.twu.biblioteca.movieitem;
 
-public class Movie {
-    private String name;
+import com.twu.biblioteca.elementusage.Element;
+
+public class Movie extends Element {
     private String director;
     private int year;
     private int rating;      /* 0 for unrated */
     private boolean isChecked;
 
     public Movie(String name, int year, String director, int rating) {
-        this.name = name;
+        super(name);
         this.year = year;
         this.director = director;
         this.rating = rating;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getYear() {
@@ -28,13 +25,5 @@ public class Movie {
 
     public int getRating() {
         return rating;
-    }
-
-    public boolean getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(boolean isChecked) {
-        this.isChecked = isChecked;
     }
 }

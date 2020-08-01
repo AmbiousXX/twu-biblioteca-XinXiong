@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.bookitem.*;
 
-import org.junit.Before;
+// import static org.mockito.Mockito.*;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -23,6 +23,9 @@ public class BookManagementTest {
         assertEquals(book.getAuthor(), "Antoine de Saint-Exupéry");
         assertEquals(book.getPublicationYear(), 1942);
         assertEquals(book.getIsChecked(), false);
+//        List mockedList = mock(List.class);
+//        mockedList.add("abc");
+//        when(mockedList.get(0)).thenReturn("first");
     }
 
     @Test

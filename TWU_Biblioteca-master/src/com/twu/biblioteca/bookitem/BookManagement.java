@@ -1,12 +1,14 @@
 package com.twu.biblioteca.bookitem;
 
 import com.twu.biblioteca.MessageInformation;
+import com.twu.biblioteca.elementusage.ElementManagement;
+import com.twu.biblioteca.movieitem.Movie;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BookManagement {
+public class BookManagement implements ElementManagement<Book>  {
 
     private BookManagement() {}
 
@@ -29,7 +31,8 @@ public class BookManagement {
         return books;
     }
 
-    public void viewBookList(List<Book> books) {
+    @Override
+    public void viewList(List<Book> books) {
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
             if (!book.getIsChecked()) {
@@ -39,13 +42,22 @@ public class BookManagement {
         }
     }
 
-    // suppose there's a number sticky on the book
-    public void checkoutBook(List<Book> books, int bookNumber) {
-        if (bookNumber <= books.size() && !books.get(bookNumber - 1).getIsChecked()) {
-            books.get(bookNumber - 1).setIsChecked(true);
-        } else if (books.get(bookNumber - 1).getIsChecked()) {
+    @Override
+    public void checkoutElement(List<Book> books, int elementNumber) {
+        if (elementNumber <= books.size() && !books.get(elementNumber - 1).getIsChecked()) {
+            books.get(elementNumber - 1).setIsChecked(true);
+        } else if (books.get(elementNumber - 1).getIsChecked()) {
             MessageInformation.getMessageInformation().showCheckoutBookUnsuccessfully();
         }
+    }
+
+    public void viewBookList(List<Book> books) {
+        viewList(books);
+    }
+
+    // suppose there's a number sticky on the book
+    public void checkoutBook(List<Book> books, int bookNumber) {
+        checkoutElement(books, bookNumber);
     }
 
     public void returnBook(List<Book> books, int bookNumber) {

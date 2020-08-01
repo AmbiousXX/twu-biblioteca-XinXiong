@@ -1,12 +1,13 @@
 package com.twu.biblioteca.movieitem;
 
 import com.twu.biblioteca.MessageInformation;
+import com.twu.biblioteca.elementusage.ElementManagement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MovieManagement {
+public class MovieManagement implements ElementManagement<Movie> {
     private MovieManagement() {}
 
     private static MovieManagement movieManagement = new MovieManagement();
@@ -29,7 +30,8 @@ public class MovieManagement {
         return movies;
     }
 
-    public void viewMovieList(List<Movie> movies) {
+    @Override
+    public void viewList(List<Movie> movies) {
         for (int i = 0; i < movies.size(); i++) {
             Movie movie = movies.get(i);
             if (!movie.getIsChecked()) {
@@ -39,10 +41,19 @@ public class MovieManagement {
         }
     }
 
-    public void checkoutMovie(List<Movie> movies, int movieNumber) {
-        if (movieNumber <= movies.size() && !movies.get(movieNumber - 1).getIsChecked()) {
-            movies.get(movieNumber - 1).setIsChecked(true);
+    @Override
+    public void checkoutElement(List<Movie> movies, int elementNumber) {
+        if (elementNumber <= movies.size() && !movies.get(elementNumber - 1).getIsChecked()) {
+            movies.get(elementNumber - 1).setIsChecked(true);
             MessageInformation.getMessageInformation().showCheckoutMovieSuccessfully();
         }
+    }
+
+    public void viewMovieList(List<Movie> movies) {
+        viewList(movies);
+    }
+
+    public void checkoutMovie(List<Movie> movies, int movieNumber) {
+        checkoutElement(movies, movieNumber);
     }
 }

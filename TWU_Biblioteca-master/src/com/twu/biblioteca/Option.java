@@ -84,7 +84,7 @@ public class Option {
 
     private void dealWithInputOptionAfterLogIn(Scanner scanner, MyState myState, List<Book> books,
                                                BookManagement bookManagement, UserManagement userManagement){
-        boolean hasLoggedOut= false;
+        boolean hasLoggedOut = false;
 
         do{
             // get an input from console
