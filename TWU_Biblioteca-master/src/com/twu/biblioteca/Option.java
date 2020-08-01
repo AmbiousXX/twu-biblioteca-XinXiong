@@ -37,7 +37,7 @@ public class Option {
         }
     }
 
-    public void dealWithInputOption(Scanner scanner, MyState myState, List<Book> books,
+    public void dealWithInputOptionBeforLogIn(Scanner scanner, MyState myState, List<Book> books,
                                     List<Movie> movies, Hashtable<String, User> users) {
         MessageInformation messageInformation = new MessageInformation();
         BookManagement bookManagement = new BookManagement(messageInformation);
@@ -111,6 +111,7 @@ public class Option {
                     userManagement.viewCheckoutBookList(myState);
                     break;
                 case "my information":
+                    userManagement.showMyInformation(myState);
                     break;
                 case "log out":
                     userManagement.logOut(myState);

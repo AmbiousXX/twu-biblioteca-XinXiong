@@ -10,16 +10,34 @@ import java.util.Set;
 public class User {
     private String accountNumber;
     private int password;       /* hash code for safety */
+    private String name;
+    private String email;
+    private String phoneNumber;
     private Hashtable<Integer, Book> checkoutBookList;
 
-    public User(String accountNumber, String password) {
+    public User(String accountNumber, String password, String name, String email, String phoneNumber) {
         this.accountNumber = accountNumber;
         this.password = password.hashCode();
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.checkoutBookList = new Hashtable<>();
     }
 
     public String getAccountNumber() {
         return accountNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public Hashtable<Integer, Book> getUserCheckoutBookList() {

@@ -8,18 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class UserManagement {
-//    //injection
-//    MyState myState;
-//
-//    public UserManagement(MyState myState) {
-//        this.myState = myState;
-//    }
 
     public Hashtable<String, User> initializeUserList() {
         Hashtable<String, User> users = new Hashtable();
-        users.put("lxm-0376", new User("lxm-0376", "!ad7dl23"));
-        users.put("0wm-9232", new User("0wm-9232", "kdf1h04h@@ksw"));
-        users.put("nny-8855", new User("nny-8855", "67yd7tDJK0"));
+        users.put("lxm-0376", new User("lxm-0376", "!ad7dl23", "lxm", "lxm0376@xyy.com", "18743304207"));
+        users.put("0wm-9232", new User("0wm-9232", "kdf1h04h@@ksw", "wm", "wm9232@xyy.com", "14489649277"));
+        users.put("nny-8855", new User("nny-8855", "67yd7tDJK0", "nny", "mmy8855@163.com", "18824569636"));
 
         return users;
     }
@@ -38,7 +32,6 @@ public class UserManagement {
         }
     }
 
-    // may not exist
     public void logOut(MyState myState) {
         myState.setIsUser(false);
     }
@@ -69,7 +62,9 @@ public class UserManagement {
         }
     }
 
-    public void viewMyInformation(){
-
+    public void showMyInformation(MyState myState){
+        User myAccount = myState.getUserAccount();
+        System.out.println(myAccount.getAccountNumber() + " | " + myAccount.getName() + " | " +
+                myAccount.getEmail() + " | " + myAccount.getPhoneNumber());
     }
 }

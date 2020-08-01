@@ -35,7 +35,7 @@ public class BibliotecaApp {
 
         Scanner scanner = new Scanner(System.in);
 
-        option.dealWithInputOption(scanner, myState, books, movies, users);
+        option.dealWithInputOptionBeforLogIn(scanner, myState, books, movies, users);
     }
 
     public static void main(String[] args) {
