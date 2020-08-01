@@ -21,7 +21,7 @@ public class MovieManagement {
         return movies;
     }
 
-    public void viewBookList(List<Movie> movies) {
+    public void viewMovieList(List<Movie> movies) {
         for (int i = 0; i < movies.size(); i++) {
             Movie movie = movies.get(i);
             if (!movie.getIsChecked()) {

@@ -31,7 +31,7 @@ public class BibliotecaApp {
     public void manualDealWithOptionMenu() {
         messageInformation.showWelcomeMessage();
 
-        option.initializeAndViewOptionMenu();
+        option.initializeAndViewOptionMenuBeforeLogIn();
 
         Scanner scanner = new Scanner(System.in);
 

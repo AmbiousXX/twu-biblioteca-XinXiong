@@ -15,6 +15,7 @@ public class User {
     public User(String accountNumber, String password) {
         this.accountNumber = accountNumber;
         this.password = password.hashCode();
+        this.checkoutBookList = new Hashtable<>();
     }
 
     public String getAccountNumber() {
