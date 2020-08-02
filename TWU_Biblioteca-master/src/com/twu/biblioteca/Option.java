@@ -104,8 +104,10 @@ public class Option {
                 case "check out book":
                     MessageInformation.getMessageInformation().showHintBeforeChooseElement();
                     String checkoutBookNumberStr = scanner.nextLine();
-                    bookManagement.checkoutBook(books, Integer.parseInt(checkoutBookNumberStr));
-                    userManagement.userRegisterCheckoutBook(myState, books, Integer.parseInt(checkoutBookNumberStr));
+                    boolean ok = bookManagement.checkoutBook(books, Integer.parseInt(checkoutBookNumberStr));
+                    if(ok) {
+                        userManagement.userRegisterCheckoutBook(myState, books, Integer.parseInt(checkoutBookNumberStr));
+                    }
                     break;
                 case "return book":
                     MessageInformation.getMessageInformation().showHintBeforeChooseElement();

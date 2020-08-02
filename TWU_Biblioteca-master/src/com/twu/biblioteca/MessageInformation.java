@@ -14,7 +14,7 @@ public class MessageInformation {
     private final String hintBeforeChooseOption = "Please input your option(Format:all lowercase letters):";
     private final String hintBeforeInputAccountNumberAndPassword =
             "Please input your account number and password(Format:xxx-xxxx password):";
-    private final String hintBeforeChooseElement = "Please the number:";
+    private final String hintBeforeChooseElement = "Please input the number:";
 
     private MessageInformation() {}
     private static MessageInformation messageInformation = new MessageInformation();

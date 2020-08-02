@@ -6,7 +6,6 @@ public class Movie extends Element {
     private String director;
     private int year;
     private int rating;      /* 0 for unrated */
-    private boolean isChecked;
 
     public Movie(String name, int year, String director, int rating) {
         super(name);

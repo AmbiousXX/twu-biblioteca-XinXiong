@@ -38,24 +38,9 @@ public class MessageInformationTest {
         PrintStream output = new PrintStream(buffer);
         System.setOut(output);
 
-        bookManagement.checkoutBook(books, 3);
+        messageInformation.showCheckoutBookSuccessfully();
 
         assertEquals(checkoutBookSuccessfully + "\r" + "\n", buffer.toString());
-    }
-
-    @Test
-    public void testCheckoutBookUnsuccessfully() {
-        String checkoutBookUnsuccessfully = "Sorry, that book is not available";
-
-        bookManagement.checkoutBook(books, 3);
-
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        PrintStream output = new PrintStream(buffer);
-        System.setOut(output);
-
-        bookManagement.checkoutBook(books, 3);
-
-        assertEquals(checkoutBookUnsuccessfully + "\r" + "\n", buffer.toString());
     }
 
     @Test
@@ -84,6 +69,19 @@ public class MessageInformationTest {
         bookManagement.returnBook(books, 3);
 
         assertEquals(returnBookUnsuccessfully + "\r" + "\n", buffer.toString());
+    }
+
+    @Test
+    public void testCheckoutMovieSuccessfully() {
+        String checkoutBookSuccessfully = "Thank you! Enjoy the movie";
+
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        PrintStream output = new PrintStream(buffer);
+        System.setOut(output);
+
+        messageInformation.showCheckoutMovieSuccessfully();
+
+        assertEquals(checkoutBookSuccessfully + "\r" + "\n", buffer.toString());
     }
 
     @Test

@@ -5,7 +5,6 @@ import com.twu.biblioteca.elementusage.Element;
 public class Book extends Element {
     private String author;
     private int publicationYear;
-    private boolean isChecked;
 
     public Book(String name, String author, int publicationYear) {
         super(name);

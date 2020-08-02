@@ -15,7 +15,6 @@ public class BookManagement implements ElementManagement<Book>  {
     }
 
     public List<Book> initializeBookList() {
-        // make a new book list
         List<Book> books = new ArrayList<>(Arrays.asList(
                 new Book("A Midsummer Night's Dream", "W. William Shakespeare", 1600),
                 new Book("Gone With the Wind", "Margaret Mitchell", 1936),
@@ -39,12 +38,15 @@ public class BookManagement implements ElementManagement<Book>  {
     }
 
     @Override
-    public void checkoutElement(List<Book> books, int elementNumber) {
+    public boolean checkoutElement(List<Book> books, int elementNumber) {
         if (elementNumber <= books.size() && !books.get(elementNumber - 1).getIsChecked()) {
             books.get(elementNumber - 1).setIsChecked(true);
-        } else if (books.get(elementNumber - 1).getIsChecked()) {
+            return true;
+        } else {
             MessageInformation.getMessageInformation().showCheckoutBookUnsuccessfully();
         }
+
+        return false;
     }
 
     public void viewBookList(List<Book> books) {
@@ -52,15 +54,15 @@ public class BookManagement implements ElementManagement<Book>  {
     }
 
     // suppose there's a number sticky on the book
-    public void checkoutBook(List<Book> books, int bookNumber) {
-        checkoutElement(books, bookNumber);
+    public boolean checkoutBook(List<Book> books, int bookNumber) {
+        return checkoutElement(books, bookNumber);
     }
 
     public void returnBook(List<Book> books, int bookNumber) {
         if (bookNumber <= books.size() && books.get(bookNumber - 1).getIsChecked()) {
             books.get(bookNumber - 1).setIsChecked(false);
             MessageInformation.getMessageInformation().showReturnBookSuccessfully();
-        } else if (!books.get(bookNumber - 1).getIsChecked()) {
+        } else {
             MessageInformation.getMessageInformation().showReturnBookUnsuccessfully();
         }
     }

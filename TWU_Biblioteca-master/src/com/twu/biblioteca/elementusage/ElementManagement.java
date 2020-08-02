@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface ElementManagement<T> {
     public void viewList(List<T> t);
-    public void checkoutElement(List<T> t, int elementNumber);
+    public boolean checkoutElement(List<T> t, int elementNumber);
 }

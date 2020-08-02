@@ -42,18 +42,21 @@ public class MovieManagement implements ElementManagement<Movie> {
     }
 
     @Override
-    public void checkoutElement(List<Movie> movies, int elementNumber) {
+    public boolean checkoutElement(List<Movie> movies, int elementNumber) {
         if (elementNumber <= movies.size() && !movies.get(elementNumber - 1).getIsChecked()) {
             movies.get(elementNumber - 1).setIsChecked(true);
             MessageInformation.getMessageInformation().showCheckoutMovieSuccessfully();
+            return true;
         }
+
+        return false;
     }
 
     public void viewMovieList(List<Movie> movies) {
         viewList(movies);
     }
 
-    public void checkoutMovie(List<Movie> movies, int movieNumber) {
-        checkoutElement(movies, movieNumber);
+    public boolean checkoutMovie(List<Movie> movies, int movieNumber) {
+        return  checkoutElement(movies, movieNumber);
     }
 }
