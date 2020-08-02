@@ -11,28 +11,34 @@ import java.util.Scanner;
 
 public class Option {
     private boolean isQuit;
+    private List<String> optionMenuBeforeLogIn;
+    private List<String> optionMenuAfterLogIn;
 
-    public void initializeAndViewOptionMenuBeforeLogIn() {
-        List<String> options = new ArrayList<String>();
-        options.add("List of Books");
-        options.add("List of Movies");
-        options.add("Check out Movie");
-        options.add("Log in");
-        options.add("Quit");
-        for (String option : options) {
+    public Option() {
+        this.optionMenuBeforeLogIn = new ArrayList<String>();
+        optionMenuBeforeLogIn.add("List of Books");
+        optionMenuBeforeLogIn.add("List of Movies");
+        optionMenuBeforeLogIn.add("Check out Movie");
+        optionMenuBeforeLogIn.add("Log in");
+        optionMenuBeforeLogIn.add("Quit");
+
+        this.optionMenuAfterLogIn = new ArrayList<String>();
+        optionMenuAfterLogIn.add("List of Books");
+        optionMenuAfterLogIn.add("Check out Book");
+        optionMenuAfterLogIn.add("Return Book");
+        optionMenuAfterLogIn.add("My Checkout Books");
+        optionMenuAfterLogIn.add("My Information");
+        optionMenuAfterLogIn.add("Log out");
+    }
+
+    public void viewOptionMenuBeforeLogIn() {
+        for (String option : optionMenuBeforeLogIn) {
             System.out.println(option);
         }
     }
 
-    public void initializeAndViewOptionMenuAfterLogIn() {
-        List<String> options = new ArrayList<String>();
-        options.add("List of Books");
-        options.add("Check out Book");
-        options.add("Return Book");
-        options.add("My Checkout Books");
-        options.add("My Information");
-        options.add("Log out");
-        for (String option : options) {
+    public void viewOptionMenuAfterLogIn() {
+        for (String option : optionMenuAfterLogIn) {
             System.out.println(option);
         }
     }
@@ -45,7 +51,6 @@ public class Option {
         Hashtable<String, User> users = userManagement.initializeUserList();
 
         do {
-            // get an input from console
             String inputOption = scanner.nextLine();
             
             switch (inputOption) {
@@ -63,11 +68,10 @@ public class Option {
                 case "log in":
                     MessageInformation.getMessageInformation().showHintBeforeInputAccountNumberAndPassword();
                     String inputAccountNumberAndPassword = scanner.nextLine();
-                    // split input account number and password by a space
                     String[] inputAccountInfo = inputAccountNumberAndPassword.split(" ");
                     userManagement.logIn(users, myState,inputAccountInfo[0], inputAccountInfo[1]);
                     if(myState.getIsUser()) {
-                        initializeAndViewOptionMenuAfterLogIn();
+                        viewOptionMenuAfterLogIn();
                         MessageInformation.getMessageInformation().showHintBeforeChooseOption();
                         dealWithInputOptionAfterLogIn(scanner, myState, books, bookManagement, userManagement);
                     }
@@ -87,7 +91,6 @@ public class Option {
         boolean hasLoggedOut = false;
 
         do{
-            // get an input from console
             String inputOption = scanner.nextLine();
 
             switch (inputOption) {
@@ -115,7 +118,7 @@ public class Option {
                 case "log out":
                     userManagement.logOut(myState);
                     hasLoggedOut = true;
-                    initializeAndViewOptionMenuBeforeLogIn();
+                    viewOptionMenuBeforeLogIn();
                     MessageInformation.getMessageInformation().showHintBeforeChooseOption();
                     break;
                 default:

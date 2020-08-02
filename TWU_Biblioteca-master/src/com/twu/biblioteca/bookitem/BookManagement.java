@@ -2,18 +2,14 @@ package com.twu.biblioteca.bookitem;
 
 import com.twu.biblioteca.MessageInformation;
 import com.twu.biblioteca.elementusage.ElementManagement;
-import com.twu.biblioteca.movieitem.Movie;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class BookManagement implements ElementManagement<Book>  {
-
     private BookManagement() {}
-
     private static BookManagement bookManagement = new BookManagement();
-
     public static BookManagement getBookManagement() {
         return bookManagement;
     }

@@ -7,12 +7,12 @@ import com.twu.biblioteca.useritem.*;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    MessageInformation messageInformation;
-    BookManagement bookManagement;
-    MovieManagement movieManagement;
-    UserManagement userManagement;
-    Option option;
-    MyState myState;
+    private MessageInformation messageInformation;
+    private BookManagement bookManagement;
+    private MovieManagement movieManagement;
+    private UserManagement userManagement;
+    private Option option;
+    private MyState myState;
 
     public BibliotecaApp(MessageInformation messageInformation, BookManagement bookManagement,
                          MovieManagement movieManagement, UserManagement userManagement,
@@ -28,7 +28,7 @@ public class BibliotecaApp {
     public void manualDealWithOptionMenu() {
         messageInformation.showWelcomeMessage();
 
-        option.initializeAndViewOptionMenuBeforeLogIn();
+        option.viewOptionMenuBeforeLogIn();
         MessageInformation.getMessageInformation().showHintBeforeChooseOption();
 
         Scanner scanner = new Scanner(System.in);

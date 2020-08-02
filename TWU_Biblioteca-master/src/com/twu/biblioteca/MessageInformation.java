@@ -17,9 +17,7 @@ public class MessageInformation {
     private final String hintBeforeChooseElement = "Please the number:";
 
     private MessageInformation() {}
-
     private static MessageInformation messageInformation = new MessageInformation();
-
     public static MessageInformation getMessageInformation() {
         return messageInformation;
     }

@@ -9,8 +9,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 public class BookManagementTest {
-    MessageInformation messageInformation = MessageInformation.getMessageInformation();
-    BookManagement bookManagement = BookManagement.getBookManagement();
+    private MessageInformation messageInformation = MessageInformation.getMessageInformation();
+    private BookManagement bookManagement = BookManagement.getBookManagement();
 
 
     @Test

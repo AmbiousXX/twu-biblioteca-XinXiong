@@ -1,8 +1,8 @@
 package com.twu.biblioteca.elementusage;
 
 public class Element {
-    String name;
-    boolean isChecked;
+    private String name;
+    private boolean isChecked;
 
     public Element(String name) {
         this.name = name;

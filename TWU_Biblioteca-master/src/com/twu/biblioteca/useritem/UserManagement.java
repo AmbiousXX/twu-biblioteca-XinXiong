@@ -10,9 +10,7 @@ import java.util.Map;
 
 public class UserManagement {
     private UserManagement() {}
-
     private static UserManagement userManagement = new UserManagement();
-
     public static UserManagement getUserManagement() {
         return userManagement;
     }
@@ -53,8 +51,7 @@ public class UserManagement {
         myState.getUserAccount().removeReturnBookFromCheckoutBookList(returnBookNumber);
     }
 
-    // TODO:未来打印book信息的部分应可以与BookManagement内相同部分复用（？）
-    public void viewCheckoutBookList(MyState myState) {
+     public void viewCheckoutBookList(MyState myState) {
         Hashtable<Integer, Book> checkoutBookList = myState.getUserAccount().getUserCheckoutBookList();
         if(checkoutBookList.isEmpty()) {
             MessageInformation.getMessageInformation().showCheckoutBookListIsEmpty();
