@@ -41,7 +41,7 @@ public class BibliotecaApp {
         BookManagement bookManagement = BookManagement.getBookManagement();
         MovieManagement movieManagement = MovieManagement.getMovieManagement();
         UserManagement userManagement = UserManagement.getUserManagement();
-        Option option = new Option();
+        Option option = Option.getOption();
         MyState myState = new MyState();
 
         BibliotecaApp bibliotecaApp = new BibliotecaApp(messageInformation, bookManagement,

@@ -14,7 +14,7 @@ public class Option {
     private List<String> optionMenuBeforeLogIn;
     private List<String> optionMenuAfterLogIn;
 
-    public Option() {
+    private Option() {
         this.optionMenuBeforeLogIn = new ArrayList<String>();
         optionMenuBeforeLogIn.add("List of Books");
         optionMenuBeforeLogIn.add("List of Movies");
@@ -29,6 +29,10 @@ public class Option {
         optionMenuAfterLogIn.add("My Checkout Books");
         optionMenuAfterLogIn.add("My Information");
         optionMenuAfterLogIn.add("Log out");
+    }
+    private static Option option = new Option();
+    public static Option getOption() {
+        return option;
     }
 
     public void viewOptionMenuBeforeLogIn() {

@@ -7,8 +7,7 @@ public class MyState {
     public void setIsUser(boolean isUser, User... user) {
         this.isUser = isUser;
 
-        if(isUser) {
-            // only one user at most
+        if (isUser) {
             userAccount = user[0];
         } else {
             userAccount = null;
@@ -16,11 +15,7 @@ public class MyState {
     }
 
     public User getUserAccount() {
-        if(isUser) {
-            return userAccount;
-        }
-        // TODO:应当给予提示信息或异常
-        return null;
+        return userAccount;
     }
 
     public boolean getIsUser() {

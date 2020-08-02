@@ -27,7 +27,6 @@ public class UserManagement {
     public void logIn(Hashtable<String, User> users, MyState myState, String accountNumber, String password) {
         if(users.containsKey(accountNumber)) {
             if(users.get(accountNumber).matchesAccountNumberAndPassword(accountNumber, password)) {
-                // log in successfully
                 myState.setIsUser(true, users.get(accountNumber));
             } else {
                 MessageInformation.getMessageInformation().showInputWrongPasswordWhenLogIn();
