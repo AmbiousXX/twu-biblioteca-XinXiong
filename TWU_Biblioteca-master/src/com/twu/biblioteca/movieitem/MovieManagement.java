@@ -31,6 +31,16 @@ public class MovieManagement implements ElementManagement<Movie> {
     }
 
     @Override
+    public boolean isInTheList(List<Movie> movies, int elementNumber) {
+        return elementNumber <= movies.size();
+    }
+
+    @Override
+    public boolean isChecked(List<Movie> movies, int movieNumber) {
+        return movies.get(movieNumber - 1).getIsChecked();
+    }
+
+    @Override
     public void viewList(List<Movie> movies) {
         for (int i = 0; i < movies.size(); i++) {
             Movie movie = movies.get(i);
@@ -43,7 +53,7 @@ public class MovieManagement implements ElementManagement<Movie> {
 
     @Override
     public boolean checkoutElement(List<Movie> movies, int elementNumber) {
-        if (elementNumber <= movies.size() && !movies.get(elementNumber - 1).getIsChecked()) {
+        if (isInTheList(movies, elementNumber) && !isChecked(movies, elementNumber)) {
             movies.get(elementNumber - 1).setIsChecked(true);
             MessageInformation.getMessageInformation().showCheckoutMovieSuccessfully();
             return true;

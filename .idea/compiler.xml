@@ -9,7 +9,7 @@
         <module name="dojos-master-TWU_Biblioteca-master" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="dojos-master-TWU_Biblioteca-master" target="8" />
     </bytecodeTargetLevel>
   </component>

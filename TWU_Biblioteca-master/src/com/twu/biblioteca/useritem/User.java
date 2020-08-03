@@ -50,7 +50,14 @@ public class User {
     }
 
     public boolean matchesAccountNumberAndPassword(String inputAccountNumber, String inputPassword) {
-        return (inputAccountNumber.equals(this.accountNumber)) &&
-                (inputPassword.hashCode() == this.password);
+        return isAccountNumberEquals(inputAccountNumber) && isPasswordEquals(inputPassword);
+    }
+
+    private boolean isAccountNumberEquals(String inputAccountNumber) {
+        return inputAccountNumber.equals(this.accountNumber);
+    }
+
+    private boolean isPasswordEquals(String inputPassword) {
+        return inputPassword.hashCode() == this.password;
     }
 }

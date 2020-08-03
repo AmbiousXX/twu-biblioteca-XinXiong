@@ -27,6 +27,16 @@ public class BookManagement implements ElementManagement<Book>  {
     }
 
     @Override
+    public boolean isInTheList(List<Book> books, int elementNumber) {
+        return elementNumber <= books.size();
+    }
+
+    @Override
+    public boolean isChecked(List<Book> books, int bookNumber) {
+        return books.get(bookNumber - 1).getIsChecked();
+    }
+
+    @Override
     public void viewList(List<Book> books) {
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
@@ -39,7 +49,7 @@ public class BookManagement implements ElementManagement<Book>  {
 
     @Override
     public boolean checkoutElement(List<Book> books, int elementNumber) {
-        if (elementNumber <= books.size() && !books.get(elementNumber - 1).getIsChecked()) {
+        if (isInTheList(books, elementNumber) && !isChecked(books, elementNumber)) {
             books.get(elementNumber - 1).setIsChecked(true);
             return true;
         } else {
@@ -53,13 +63,12 @@ public class BookManagement implements ElementManagement<Book>  {
         viewList(books);
     }
 
-    // suppose there's a number sticky on the book
     public boolean checkoutBook(List<Book> books, int bookNumber) {
         return checkoutElement(books, bookNumber);
     }
 
     public void returnBook(List<Book> books, int bookNumber) {
-        if (bookNumber <= books.size() && books.get(bookNumber - 1).getIsChecked()) {
+        if (isInTheList(books, bookNumber) && isChecked(books, bookNumber)) {
             books.get(bookNumber - 1).setIsChecked(false);
             MessageInformation.getMessageInformation().showReturnBookSuccessfully();
         } else {
