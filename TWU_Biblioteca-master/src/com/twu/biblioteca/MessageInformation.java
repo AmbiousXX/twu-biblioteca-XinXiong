@@ -22,17 +22,14 @@ public class MessageInformation {
         return messageInformation;
     }
 
-    // welcome message
     public void showWelcomeMessage() {
         System.out.println(welcomeMessage);
     }
 
-    // option message
     public void showInvalidOptionNotice() {
         System.out.println(invalidOptionNotice);
     }
 
-    // book message
     public void showCheckoutBookSuccessfully() {
         System.out.println(checkoutBookSuccessfully);
     }
@@ -49,12 +46,10 @@ public class MessageInformation {
         System.out.println(returnBookUnsuccessfully);
     }
 
-    // movie message
     public void showCheckoutMovieSuccessfully() {
         System.out.println(checkoutMovieSuccessfully);
     }
 
-    // user message
     public void showInputWrongPasswordWhenLogIn() {
         System.out.println(inputWrongPasswordWhenLogIn);
     }
@@ -67,7 +62,6 @@ public class MessageInformation {
         System.out.println(checkoutBookListIsEmpty);
     }
 
-    // type-ahead message
     public void showHintBeforeChooseOption() {
         System.out.println(hintBeforeChooseOption);
     }
