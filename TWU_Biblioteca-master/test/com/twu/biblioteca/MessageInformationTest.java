@@ -85,6 +85,47 @@ public class MessageInformationTest {
     }
 
     @Test
+    public void testHintBeforeInputAccountNumberAndPassword() {
+        String hintBeforeInputAccountNumberAndPassword =
+                "Please input your account number and password(Format:xxx-xxxx password):";
+        String input = "log in";
+
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        PrintStream output = new PrintStream(buffer);
+        System.setOut(output);
+
+        switch (input) {
+            case "log in":
+                messageInformation.showHintBeforeInputAccountNumberAndPassword();
+                break;
+            default:
+                break;
+        }
+
+        assertEquals(hintBeforeInputAccountNumberAndPassword + "\r" + "\n", buffer.toString());
+    }
+
+    @Test
+    public void testHintBeforeChooseElement() {
+        String hintBeforeChooseElement = "Please input the number:";
+        String input = "check out movie";
+
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        PrintStream output = new PrintStream(buffer);
+        System.setOut(output);
+
+        switch (input) {
+            case "check out movie":
+                messageInformation.showHintBeforeChooseElement();
+                break;
+            default:
+                break;
+        }
+
+        assertEquals(hintBeforeChooseElement + "\r" + "\n", buffer.toString());
+    }
+
+    @Test
     public void testInvalidOptionNotice() {
         String invalidOptionNotice = "Please select a valid option!";
         String invalidInputOption = "remove book";
