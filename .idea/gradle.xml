@@ -8,6 +8,11 @@
         <option name="externalProjectPath" value="$USER_HOME$/IdeaProjects/untitled" />
         <option name="gradleHome" value="$PROJECT_DIR$/../gradle-5.6.1" />
         <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$USER_HOME$/IdeaProjects/untitled" />
+          </set>
+        </option>
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
