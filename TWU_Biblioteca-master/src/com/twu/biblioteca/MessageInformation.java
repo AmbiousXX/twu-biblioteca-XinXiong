@@ -23,27 +23,31 @@ public class MessageInformation {
     }
 
     public void showWelcomeMessage() {
-        System.out.println(welcomeMessage);
+        printMessageToConsole(welcomeMessage);
     }
 
     public void showInvalidOptionNotice() {
-        System.out.println(invalidOptionNotice);
+        printMessageToConsole(invalidOptionNotice);
     }
 
     public void showCheckoutBookSuccessfully() {
-        System.out.println(checkoutBookSuccessfully);
+        printMessageToConsole(checkoutBookSuccessfully);
     }
 
     public void showCheckoutBookUnsuccessfully() {
-        System.out.println(checkoutBookUnsuccessfully);
+        printMessageToConsole(checkoutBookUnsuccessfully);
     }
 
     public void showReturnBookSuccessfully() {
-        System.out.println(returnBookSuccessfully);
+        printMessageToConsole(returnBookSuccessfully);
     }
 
     public void showReturnBookUnsuccessfully() {
-        System.out.println(returnBookUnsuccessfully);
+        printMessageToConsole(returnBookUnsuccessfully);
+    }
+    
+    private void printMessageToConsole(String message) {
+        System.out.println(message)
     }
 
     public void showCheckoutMovieSuccessfully() {
